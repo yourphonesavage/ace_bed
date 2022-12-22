@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>ACE 침대</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet&family=Noto+Serif+KR:wght@300;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpBuYRQaFFOM1WHuLcqfurJw9Frx7Z4i0&callback=initMap"></script>
+<script src="js/main.js"></script>
+
+</head>
+<body>
+<div class="container">
+	<div class="main" id="start">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<video id="intro" src="video/sleeping2.mp4" muted></video>
+					<div class="txt_wrap"><!-- flex / flex-direction column -->
+						<p class="keytext">오늘 밤<br class="mobilebr"> 어떤 스프링으로 만든 침대에서<br>주무시겠습니까?</p>
+						<div class="subtext">에이스만의 첨단 공학이 적용된 스프링은<br class="mobilebr"> 인체곡선과 하중 분포에 따라<br>
+						위에서 한 번 부드럽게 맞춰주고<br class="mobilebr"> 밑에서 또 한 번 단단하게 받쳐줍니다.</div>
+						<a href="" class="more">MORE</a>
+					</div>				
+				</div>
+				<div class="swiper-slide">
+					<img src="images/mainvisual.png" alt="main2">
+					<div class="txt_wrap"><!-- flex / flex-direction column -->
+						<p class="keytext">휴식을 방해하는<br class="mobilebr">모든 것이 사라지는 순간<br>완벽한 편안함이 시작됩니다</p>
+						<div class="subtext">꺼짐, 빈틈, 쏠림, 소음, 흔들림으로부터 자유롭게!<br>
+						 어떤 몸 상태에도 적용되는 5 FREE SYSTEM으로 최상의 숙면 조건을 만듭니다.</div>
+						<a href="" class="more">MORE</a>
+					</div>
+				</div>
+			</div>
+
+			<a href="" class="swiper-button-prev">
+				<svg><path class="btn_prev" d="M 40 10 Q 40 65 40 140"></path></svg>
+				<p>prev</p>
+				
+			</a>
+
+			<a href="" class="swiper-button-next">
+				<svg><path class="btn_next" d="M 10 10 Q 10 65 10 140"></path></svg>
+				<p>next</p>
+			</a>
+		</div>
+		<div class="top_menu"><!-- flex / justify-content space-between -->
+			<div class="logo"><h1><a href="">logo</a></h1></div>
+
+			<nav id="desktop_menu">
+				<ul>
+					<li>
+						<a href="">침대</a>
+						<ul>
+							<li><a href="">프레임</a></li>
+							<li><a href="">매트리스</a></li>
+							<li><a href="">신제품</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">가구</a>
+						<ul>
+							<li><a href="">룸 세트</a></li>
+							<li><a href="">리빙 가구</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">스트레스리스</a>
+						<ul>
+							<li><a href="">1인용 리클라이너</a></li>
+							<li><a href="">오피스체어</a></li>
+							<li><a href="">소파</a></li>			
+							<li><a href="">테이블&악세서리</a></li>									
+						</ul>
+					</li>
+					<li>
+						<a href="">슬립케어</a>
+						<ul>
+							<li><a href="">마이크로케어</a></li>
+							<li><a href="">스마트슬리브</a></li>
+							<li><a href="">마이크로케어 쿨링패드</a></li>
+							<li><a href="">마이크로가드 eco</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+
+			<nav id="mobile_menu">
+				<ul>
+					<li>
+						<a href="">침대
+							<p class="more_bar">
+								<span></span>
+								<span></span>								
+							</p>	
+						</a>
+						<ul>
+							<li><a href="">프레임</a></li>
+							<li><a href="">매트리스</a></li>
+							<li><a href="">신제품</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">가구
+							<p class="more_bar">
+								<span></span>
+								<span></span>								
+							</p>							
+						</a>
+
+					
+						<ul>
+							<li><a href="">룸 세트</a></li>
+							<li><a href="">리빙 가구</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">스트레스리스
+							<p class="more_bar">
+								<span></span>
+								<span></span>								
+							</p>
+						</a>					
+						<ul>
+							<li><a href="">1인용 리클라이너</a></li>
+							<li><a href="">오피스체어</a></li>
+							<li><a href="">소파</a></li>			
+							<li><a href="">테이블&악세서리</a></li>									
+						</ul>
+					</li>
+					<li>
+						<a href="">슬립케어
+							<p class="more_bar">
+								<span></span>
+								<span></span>								
+							</p>								
+						</a>
+						
+						<ul>
+							<li><a href="">마이크로케어</a></li>
+							<li><a href="">스마트슬리브</a></li>
+							<li><a href="">마이크로케어 쿨링패드</a></li>
+							<li><a href="">마이크로가드 eco</a></li>
+						</ul>
+					</li>
+				</ul>				
+			</nav>
+
+
+			<div class="icon">
+				<ul>
+					<li><a href="" class="search_icon">search</a></li>
+					<li><a href="" class="private">private</a></li>
+					<li><a href="" class="alarm_tab">alarm</a></li>					
+				</ul>
+			</div>
+		</div>
+
+		<div class="dim"></div>
+	
+	</div>
+
+	<div class="sub" id="page1">
+		<div class="swap_image">
+			<div class="swap_bg"><img src="images/swap1.jpg" alt="swap_image1"></div>
+			<div class="swap_bg"><img src="images/swap2.jpg" alt="swap_image2"></div>
+			<div class="swap_bg"><img src="images/swap3.jpg" alt="swap_image3"></div>
+			<div class="swap_bg"><img src="images/swap4.jpg" alt="swap_image4"></div>
+		</div>
+		<div class="inner">
+			<ul><!-- flex -->
+				<li>
+					<a href="" class="item1">
+						<div class="item_basic">
+							<span class="txtbox">호텔형침대</span>
+							<span class="item_number">MORFEO-II</span>
+							<p class="item_desc">차분한 모카브라운 색상의<br>깔끔한 심플 모던 스타일 침대</p>
+						</div>
+						<div class="item_detail">
+							<ul>
+								<li><!-- flex -->
+									<span class="txt1">사이즈(SS)</span>
+									<span class="txt2">너비 1,100mm<br>길이 2,104mm<br>높이 1,158mm</span>
+								</li>
+								<li>
+									<span class="txt1">소재</span>
+									<span class="txt2">패브릭</span>
+								</li>
+								<li>
+									<span class="txt1">타입</span>
+									<span class="txt2">L/C Type</span>		
+								</li>
+								<li>
+									<span class="txt1">컬러</span>
+									<div class="txt2">
+										<span class="color_chip" style="background:#AE9B89;"></span>
+										<p class="color_name">모카브라운</p>
+									</div>							
+								</li>
+							</ul>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="" class="item2">
+						<div class="item_basic">
+							<span class="txtbox">1인침대 추천</span>
+							<span class="item_number">IRINA</span>
+							<p class="item_desc">일상에 아늑함을 더하는<br>프렌치 모던 스타일 침대</p>
+						</div>
+						<div class="item_detail">
+							<ul>
+								<li>
+									<span class="txt1">사이즈(SS)</span>
+									<span class="txt2">너비 1,226mm<br>길이 2,097mm<br>높이 1.138mm</span>								
+								</li>
+								<li>
+									<span class="txt1">소재</span>
+									<span class="txt2">패브릭</span>								
+								</li>
+								<li>
+									<span class="txt1">타입</span>
+									<span class="txt2">N Type</span>								
+								</li>
+								<li>
+									<span class="txt1">컬러</span>
+
+									<div class="txt2">
+										<ul>
+											<li><span class="color_chip" style="background:#624233;"></span>
+												<p class="color_name">윌넛</p></li>
+
+											<li><span class="color_chip" style="background:#AC8E68;"></span>
+												<p class="color_name">내추럴 오크</p></li>
+										</ul>
+
+									</div>							
+								</li>																
+							</ul>
+						</div>
+					</a>
+				</li>
+
+				<li>
+					<a href="" class="item3">
+						<div class="item_basic">
+							<span class="txtbox">호텔형침대</span>
+							<span class="item_number">BMA-1165</span>
+							<p class="item_desc">자유로운 공간 구성의<br>실용적 디자인 호텔형 침대 </p>
+						</div>
+						<div class="item_detail">
+							<ul>
+								<li>
+									<span class="txt1">사이즈(SS)</span>
+									<span class="txt2">너비 1,100mm<br>길이 2,104mm<br>높이 1,158mm</span>								
+								</li>
+								<li>
+									<span class="txt1">소재</span>
+									<span class="txt2">패브릭</span>								
+								</li>
+								<li>
+									<span class="txt1">타입</span>
+									<span class="txt2">L/C Type</span>								
+								</li>
+								<li>
+									<span class="txt1">컬러</span>
+
+									<div class="txt2">
+										<ul>
+											<li><span class="color_chip" style="background:#6D767D;"></span>
+												<p class="color_name">그레이</p></li>
+
+											<li><span class="color_chip" style="background:#9B6A5B;"></span>
+												<p class="color_name">핑크</p></li>
+										</ul>
+									</div>	
+
+								</li>																
+							</ul>
+						</div>
+					</a>
+				</li>
+
+				<li>
+					<a href="" class="item4">
+						<div class="item_basic">
+							<span class="txtbox">신혼부부 추천</span>
+							<span class="item_number">ZANA</span>
+							<p class="item_desc">유려한 곡선이 아름다운 침대</p>
+						</div>
+						<div class="item_detail">
+							<ul>
+								<li>
+									<span class="txt1">사이즈(SS)</span>
+									<span class="txt2">너비 1,848mm<br>길이 2,212mm<br>높이 1.213mm</span>								
+								</li>
+								<li>
+									<span class="txt1">소재</span>
+									<span class="txt2">패브릭 / 멀티 소재</span>								
+								</li>
+								<li>
+									<span class="txt1">타입</span>
+									<span class="txt2">L/C Type</span>								
+								</li>
+								<li>
+									<span class="txt1">컬러</span>
+									<div class="txt2">
+										<ul>
+											<li><span class="color_chip" style="background:#7B6D6D;"></span>
+												<p class="color_name">팬텀그레이</p></li>
+
+											<li><span class="color_chip" style="background:#DAADAD;"></span>
+												<p class="color_name">피치블라썸</p></li>
+										</ul>
+									</div>								
+								</li>																
+							</ul>
+						</div>
+					</a>
+				</li>
+
+			</ul>
+
+		</div>
+	</div>
+	<div class="sub" id="page2"><!-- flex / align-items center -->
+		<div class="inner"><!-- flex -->
+
+			<div class="event_txt"> <!--flex flex-direction: row-reverse--> <!--flex-direction column-->
+				<span class="event_title">EVENT</span>
+				<p class="customer">이벤트 관련 궁금하신 사항은<br>고객센터 1599-7121로 문의바랍니다</p>
+				<a href=""><span class="ask">고객 문의</span></a>
+			</div>
+
+			<div class="event_box">
+				<ul><!-- flex -->
+					<li>
+						<img src="images/wedding_icon.png" alt="event_icon1">
+						<p class="title">
+							웨딩 멤버스<br>고객님이시라면?
+						</p>
+						<ul class="guide">
+							<li><a href="">웨딩 멤버스 가입하기</a></li>
+							<li><a href="">사은품부터 할인혜택 확인하기</a></li>
+							<li><a href="">에이스 침대 인기제품 TOP 5</a></li>
+						</ul>
+					</li>
+
+					<li>
+						<img src="images/delivery_icon.png" alt="event_icon1">
+						<p class="title">
+							LG전자 멤버십<br>회원이시라면?
+						</p>
+						<ul class="guide">
+							<li><a href="">LG전자 멤버십 가입하기</a></li>
+							<li><a href="">최대 15만원 상품권 혜택 확인하기</a></li>
+							<li><a href="">에이스 침대 인기제품 TOP 5</a></li>
+						</ul>
+					</li>
+
+					<li>
+						<img src="images/review_event.png" alt="event_icon1">
+						<p class="title">
+							2022 에이스침대<br>구매 고객 대상 이벤트
+						</p>
+						<ul class="guide">
+							<li><a href="">이벤트 참여방법</a></li>
+							<li><a href="">구매후기 작성하기</a></li>
+							<li><a href="">당첨자 발표 확인하기</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="sub" id="page3">
+		<div id="map"></div>
+		<div class="storebox">
+			<p>현재 고객님과 가까운<br>매장을 안내해 드립니다</p>
+			<form>
+				<div class="search">
+					<label><input type="text" placeholder="매장명 및 지역검색"></label>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<footer id="footer"><!-- flex -->
+		<div class="footer_inner">
+			<div class="footer_logo"><img src="images/footer_logo.png" alt="logo"></div>
+			<div class="footer_right">
+				<div class="app">
+					<p>언제 어디서든 에이스 침대의 침대과학을<br>AR APP으로 만나보세요!</p>
+					<div class="btns">
+						<ul>
+							<li><a href="">APP STORE</a></li>
+							<li><a href="">GOOGLE PLAY</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="tel">
+					<span>고객센터 1599-7021</span>
+					<span>A/S문의 080-735-7123</span>
+				</div>
+			</div>
+
+		</div>
+
+	</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,1362 @@
+﻿1) step1
+
+1-1) CSS 작성
+
+@charset "utf-8";
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, table, dl, dd {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 16px;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+ul, ol {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	vertical-align: top;
+	border: none;
+}
+body {
+	font-family: "Roboto", "Noto Sans KR", sans-serif;
+	font-size: 1em;
+}
+.wrapper {
+	min-width: 320px;
+}
+
+/* step1 start page */
+#start {
+	position: relative;
+	width: auto;
+	height: 100vh;
+}
+#start .upper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1001;
+	padding: 0 16px;
+	width: 100%;
+	height: 75px;
+	background-color: transparent;
+	box-sizing: border-box;
+}
+#start .upper .tab {
+	width: 32px;
+}
+#start .upper .symbol {
+	display: none;
+	width: 32px;
+}
+#start .upper .search {
+	width: 30px;
+}
+#start .signature_area {
+	position: absolute;
+	left: 50%;
+	top: 12vh;
+	z-index: 1000;
+	text-align: center;
+	transform: translateX(-50%);
+}
+#start .signature_area .symbol {
+	display: inline-block;
+	padding: 0 0 12px;
+}
+#start .signature_area .symbol a {
+	display: block;
+	width: 92px;
+	height: 92px;
+}
+#start .signature_area h1 {
+	font-size: 1em;
+}
+#start .signature_area h1 span {
+	display: block;
+	margin-top: 6px;
+	font-size: 0.875em;
+	font-weight: 400;
+	color: #002b41;
+}
+#start .signature_area h1 span.title {
+	text-transform: uppercase;
+	font-family: "Oswald", sans-serif;
+	font-size: 1.375em;
+}
+#start .swiper-container {
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+}
+#start .swiper-container .swiper-slide {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	text-align: center;
+	color: #fff;
+}
+#start .swiper-container .swiper-slide img, 
+#start .swiper-container .swiper-slide video {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#start .swiper-container .swiper-slide .description {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	opacity: 0;
+	transform: translate(-50%,-50%);
+	transition: opacity 0.4s;
+	transition-delay: 0.4s;
+}
+#start .swiper-container .swiper-slide.swiper-slide-active .description {
+	opacity: 1;
+}
+#start .swiper-container .swiper-slide .description p {
+	line-height: 1.8;
+	font-size: 0.875em;
+	color: #fff;
+	text-shadow: 0 0 1px rgba(0,0,0,.2);
+}
+#start .swiper-container .swiper-button-prev {
+	left: 16px;
+	width: 48px;
+}
+#start .swiper-container .swiper-button-prev:after {
+	content: "";
+	display: block;
+	width: 48px;
+	height: 135px;
+	background: url(../images/ico_arrow_left.png) no-repeat center center;
+	background-size: cover;
+}
+#start .swiper-container .swiper-button-next {
+	right: 16px;
+	width: 48px;
+}
+#start .swiper-container .swiper-button-next:after {
+	content: "";
+	display: block;
+	width: 48px;
+	height: 135px;
+	background: url(../images/ico_arrow_right.png) no-repeat center center;
+	background-size: cover;
+}
+
+
+1-2) JavaScript 작성
+
+window.addEventListener("DOMContentLoaded", function(){
+	// Start Video Control
+	const video=document.getElementById("intro");
+
+	video.addEventListener("loadeddata", function(){
+		video.muted=true;
+		video.play();
+	});
+	video.addEventListener("ended", function(){
+		video.currentTime=0;
+		video.play();
+	});
+
+	// Start SwiperJS Slider
+	const start=document.getElementById("start");
+	const swiperContainer=start.getElementsByClassName("swiper-container")[0];
+	const swiperPrevBtn=swiperContainer.getElementsByClassName("swiper-button-prev")[0];
+	const swiperNextBtn=swiperContainer.getElementsByClassName("swiper-button-next")[0];
+	let activeNum=0;
+
+	const mainSwiper=new Swiper(swiperContainer, {
+		navigation: {
+			prevEl: swiperPrevBtn,
+			nextEl: swiperNextBtn
+		},
+		on: {
+			init: function(){
+				// console.log("init event!!");
+				swiperPrevBtn.style.display="none";
+				swiperNextBtn.style.display="none";
+			},
+			transitionEnd: function(){
+				// console.log("slide transition CSS end event!!");
+				activeNum=this.activeIndex;
+
+				if(activeNum == 0){
+					swiperPrevBtn.style.display="none";
+					swiperNextBtn.style.display="none";
+					video.play();
+				}
+				else{
+					swiperPrevBtn.style.display="block";
+					swiperNextBtn.style.display="block";
+					video.pause();
+				}
+			}
+		}
+	});
+});
+
+
+
+2) step2
+
+2-1) CSS 작성
+
+@charset "utf-8";
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, table, dl, dd {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 16px;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+ul, ol {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	vertical-align: top;
+	border: none;
+}
+body {
+	font-family: "Roboto", "Noto Sans KR", sans-serif;
+	font-size: 1em;
+}
+body.fixed { /* added */
+	overflow-y: hidden;
+}
+.wrapper {
+	min-width: 320px;
+}
+
+/* step1 start page */
+#start {
+	position: relative;
+	width: auto;
+	height: 100vh;
+}
+#start .upper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1001;
+	padding: 0 16px;
+	width: 100%;
+	height: 75px;
+	background-color: transparent;
+	box-sizing: border-box;
+}
+#start .upper .tab {
+	width: 32px;
+}
+#start .upper .symbol {
+	display: none;
+	width: 32px;
+}
+#start .upper .search {
+	width: 30px;
+}
+#start .signature_area {
+	position: absolute;
+	left: 50%;
+	top: 12vh;
+	z-index: 1000;
+	text-align: center;
+	transform: translateX(-50%);
+}
+#start .signature_area .symbol {
+	display: inline-block;
+	padding: 0 0 12px;
+}
+#start .signature_area .symbol a {
+	display: block;
+	width: 92px;
+	height: 92px;
+}
+#start .signature_area h1 {
+	font-size: 1em;
+}
+#start .signature_area h1 span {
+	display: block;
+	margin-top: 6px;
+	font-size: 0.875em;
+	font-weight: 400;
+	color: #002b41;
+}
+#start .signature_area h1 span.title {
+	text-transform: uppercase;
+	font-family: "Oswald", sans-serif;
+	font-size: 1.375em;
+}
+#start .swiper-container {
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+}
+#start .swiper-container .swiper-slide {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	text-align: center;
+	color: #fff;
+}
+#start .swiper-container .swiper-slide img, 
+#start .swiper-container .swiper-slide video {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#start .swiper-container .swiper-slide .description {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	opacity: 0;
+	transform: translate(-50%,-50%);
+	transition: opacity 0.4s;
+	transition-delay: 0.4s;
+}
+#start .swiper-container .swiper-slide.swiper-slide-active .description {
+	opacity: 1;
+}
+#start .swiper-container .swiper-slide .description p {
+	line-height: 1.8;
+	font-size: 0.875em;
+	color: #fff;
+	text-shadow: 0 0 1px rgba(0,0,0,.2);
+}
+#start .swiper-container .swiper-button-prev {
+	left: 16px;
+	width: 48px;
+}
+#start .swiper-container .swiper-button-prev:after {
+	content: "";
+	display: block;
+	width: 48px;
+	height: 135px;
+	background: url(../images/ico_arrow_left.png) no-repeat center center;
+	background-size: cover;
+}
+#start .swiper-container .swiper-button-next {
+	right: 16px;
+	width: 48px;
+}
+#start .swiper-container .swiper-button-next:after {
+	content: "";
+	display: block;
+	width: 48px;
+	height: 135px;
+	background: url(../images/ico_arrow_right.png) no-repeat center center;
+	background-size: cover;
+}
+
+/* added */
+#start .mobile_menu {
+	display: none;
+	/* display: flex; */
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1001;
+	padding: 0 16px;
+	width: 100vw;
+	height: 100vh;
+	background: rgb(0,32,48);
+	background: linear-gradient(150deg, rgba(0,32,48,.8) 0%, rgba(0,32,48,1) 100%);
+	box-sizing: border-box;
+}
+#start .mobile_menu.active {
+	display: flex;
+}
+#start .mobile_menu .close {
+	position: absolute;
+	left: 16px;
+	top: 26px;
+	width: 26px;
+	height: 26px;
+}
+#menu {
+	width: 100%;
+	max-height: 70vh;
+	overflow-y: auto;
+}
+#menu > ul > li {
+	padding: 10px 0;
+	border-bottom: 1px solid rgba(255,255,255,.15);
+}
+#menu > ul > li > a {
+	display: block;
+	padding-left: 14px;
+	line-height: 50px;
+	font-size: 1.125em;
+	font-weight: 300;
+	color: #fff;
+	box-sizing: border-box;
+}
+#menu > ul > li.active > a {
+	font-weight: 400;
+	color: #00bdfe;
+}
+#menu ul ul {
+	display: none;
+	margin-bottom: 14px;
+}
+#menu ul ul a {
+	display: block;
+	padding-left: 14px;
+	line-height: 24px;
+	font-size: 0.938em;
+	color: #777;
+}
+
+@media only screen and (orientation: portrait) {
+	#start .signature_area {
+		top: 12%;
+	}
+	#start .swiper-container .swiper-slide .description p {
+		display: block;
+	}
+}
+@media only screen and (orientation: landscape) {
+	#start .signature_area {
+		top: 24%;
+	}
+	#start .swiper-container .swiper-slide .description p {
+		display: none;
+	}
+}
+
+
+2-2) JavaScript 작성
+
+window.addEventListener("DOMContentLoaded", function(){
+	// Start Video Control
+	const video=document.getElementById("intro");
+
+	video.addEventListener("loadeddata", function(){
+		video.muted=true;
+		video.play();
+	});
+	video.addEventListener("ended", function(){
+		video.currentTime=0;
+		video.play();
+	});
+
+	// Start SwiperJS Slider
+	const start=document.getElementById("start");
+	const swiperContainer=start.getElementsByClassName("swiper-container")[0];
+	const swiperPrevBtn=swiperContainer.getElementsByClassName("swiper-button-prev")[0];
+	const swiperNextBtn=swiperContainer.getElementsByClassName("swiper-button-next")[0];
+	let activeNum=0;
+
+	const mainSwiper=new Swiper(swiperContainer, {
+		navigation: {
+			prevEl: swiperPrevBtn,
+			nextEl: swiperNextBtn
+		},
+		on: {
+			init: function(){
+				// console.log("init event!!");
+				swiperPrevBtn.style.display="none";
+				swiperNextBtn.style.display="none";
+			},
+			transitionEnd: function(){
+				// console.log("slide transition CSS end event!!");
+				activeNum=this.activeIndex;
+
+				if(activeNum == 0){
+					swiperPrevBtn.style.display="none";
+					swiperNextBtn.style.display="none";
+					video.play();
+				}
+				else{
+					swiperPrevBtn.style.display="block";
+					swiperNextBtn.style.display="block";
+					video.pause();
+				}
+			}
+		}
+	});
+
+	// Mobile Menu
+	const upper=start.getElementsByClassName("upper")[0];
+	const tab=upper.getElementsByClassName("tab")[0];
+	const symbol=upper.getElementsByClassName("symbol")[0];
+	const mobileMenu=document.getElementsByClassName("mobile_menu")[0];
+	const mobileMenuCloseBtn=mobileMenu.firstElementChild;
+	const menu=this.document.getElementById("menu");
+	const menuLi=menu.firstElementChild.children;
+	let menuN;
+
+	tab.addEventListener("click", function(e){
+		e.preventDefault();
+		document.body.classList.add("fixed");
+		mobileMenu.classList.add("active");
+	});
+	mobileMenuCloseBtn.addEventListener("click", function(e){
+		e.preventDefault();
+		document.body.classList.remove("fixed");
+		mobileMenu.classList.remove("active");
+	});
+
+	for(let i=0; i<menuLi.length; i++){
+		menuLi[i].index=i;
+
+		menuLi[i].addEventListener("click", function(e){
+			e.preventDefault();
+			menuN=e.currentTarget.index;
+
+			if(e.currentTarget.classList.contains("active") == false){
+				for(let j=0; j<menuLi.length; j++){
+					if(j == menuN){
+						menuLi[j].classList.add("active");
+						menuLi[j].getElementsByTagName("ul")[0].style.display="block";
+					}
+					else{
+						menuLi[j].classList.remove("active");
+						menuLi[j].getElementsByTagName("ul")[0].style.display="none";
+					}
+				}
+			}
+			else{
+				e.currentTarget.classList.remove("active");
+				e.currentTarget.getElementsByTagName("ul")[0].style.display="none";
+			}
+		});
+	}
+});
+
+
+
+3) step3
+
+3-1) CSS 작성
+
+...
+
+/* added */
+/* stpe2 login page */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+	font-weight: 300;
+	color: #b0b0b0;
+}
+::-moz-placeholder { /* Firefox 19+ */
+	font-weight: 300;
+	color: #b0b0b0;
+}
+:-ms-input-placeholder { /* IE 10+ */
+	font-weight: 300;
+	color: #b0b0b0;
+}
+:-moz-placeholder { /* Firefox 18- */
+	font-weight: 300;
+	color: #b0b0b0;
+}
+input[type=text],
+input[type=password] {
+	padding: 0 20px;
+	width: 100%;
+	height: 65px;
+	font-family: "Roboto", "Noto Sans KR", sans-serif;
+	font-size: 0.938em;
+	border: none;
+	box-sizing: border-box;
+	border-radius: 4px;
+}
+input[type=submit] {
+	width: 100%;
+	height: 65px;
+	font-family: "Roboto", "Noto Sans KR", sans-serif;
+	font-size: 1.063em;
+	font-weight: 600;
+	letter-spacing: 1px;
+	background-color: rgb(1,173,253);
+	background: linear-gradient(150deg, rgba(1,173,253,1) 0%, rgba(98,209,214,1) 62%, rgba(241,239,153,1) 100%);
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+}
+.login_area {
+	display: none;
+	/* display: flex; */
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1001;
+	padding: 0 16px;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgb(0,32,48);
+	background: linear-gradient(150deg, rgba(0,32,48,.8) 0%, rgba(0,32,48,1) 100%);
+	box-sizing: border-box;
+}
+.login_area .close {
+	position: absolute;
+	left: 16px;
+	top: 26px;
+	width: 26px;
+	height: 26px;
+}
+.login_area .login_data {
+	padding: 0 20px;
+	max-width: 320px;
+	max-height: 70vh;
+	overflow-y: auto;
+	text-align: center;
+}
+.login_area .login_data .title h2 {
+	line-height: 70px;
+	font-size: 1.75em;
+	font-weight: 300;
+	color: #fff;
+}
+.login_area .login_data .title p {
+	line-height: 1.8;
+	font-size: 0.875em;
+	font-weight: 100;
+	color: #fff;
+}
+.login_area .login_data .form_area input[type=text] {
+	margin-top: 50px;
+}
+.login_area .login_data .form_area input[type=password] {
+	margin-top: 6px;
+}
+.login_area .login_data .form_area input[type=submit] {
+	margin-top: 15px;
+}
+.login_area .login_data .form_area .form_button {
+	margin-top: 15px;
+}
+.login_area .login_data .form_area .form_button li {
+	display: inline-block;
+}
+.login_area .login_data .form_area .form_button li a {
+	display: block;
+	position: relative;
+	padding: 0 5px;
+	line-height: 1.8;
+	font-size: 0.813em;
+	font-weight: 100;
+	color: #b4b4b4;
+}
+.login_area .login_data .form_area .form_button li a::after {
+	content: "";
+	display: block;
+	position: absolute;
+	right: -3px;
+	top: 20%;
+	width: 1px;
+	height: 60%;
+	background-color: #b4b4b4;
+}
+.login_area .login_data .form_area .form_button li:last-child a::after {
+	display: none;
+}
+
+/* step3 introduce page */
+#introduce {
+	padding: 66px 16px 34px;
+}
+#introduce .introduce_list li {
+	margin-bottom: 6px;
+}
+#introduce .introduce_list li:last-child {
+	margin-bottom: 0;
+}
+#introduce .introduce_list li .list {
+	padding: 0 12px;
+	border: 1px solid #cecece;
+	box-sizing: border-box;
+}
+#introduce .introduce_list .list .title h3 {
+	line-height: 60px;
+	text-indent: 8px;
+	font-size: 1.125em;
+	font-weight: 400;
+	color: #002b41;
+}
+#introduce .introduce_list .list .photo img {
+	width: 100%;
+}
+#introduce .introduce_list .list .description {
+	padding: 15px 0 25px;
+	line-height: 1.6;
+	text-align: justify;
+	font-size: 0.875em;
+	color: #777;
+}
+
+/* step4 project status */
+#project_status {
+	padding: 34px 16px;
+}
+#project_status .list dl {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	padding: 12px 0;
+	width: 100%;
+	border-top: 1px solid #eaeaea;
+}
+#project_status .list dl dt {
+	padding-left: 5px;
+	width: 35px;
+	font-size: 1.375em;
+	color: #666;
+	box-sizing: border-box;
+}
+#project_status .list dl dd.mon {
+	position: relative;
+	padding-left: 10px;
+	width: 50px;
+	font-size: 0.875em;
+	color: #cecece;
+	box-sizing: border-box;
+}
+#project_status .list dl dd.mon::after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -6px;
+	width: 2px;
+	height: 12px;
+	background-color: #d1d1d1;
+}
+#project_status .list dl dd.description {
+	position: relative;
+	width: 100%;
+	height: 24px;
+}
+#project_status .list dl dd.description a {
+	display: block;
+	position: absolute;
+	left: 15px;
+	top: 0;
+	width: calc(100% - 15px);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 0.875em;
+	color: #474747;
+}
+
+
+3-2) JavaScript 작성
+
+window.addEventListener("DOMContentLoaded", function(){
+	// Start Video Control
+	const video=document.getElementById("intro");
+
+	video.addEventListener("loadeddata", function(){
+		video.muted=true;
+		video.play();
+	});
+	video.addEventListener("ended", function(){
+		video.currentTime=0;
+		video.play();
+	});
+
+	// Start SwiperJS Slider
+	const start=document.getElementById("start");
+	const swiperContainer=start.getElementsByClassName("swiper-container")[0];
+	const swiperPrevBtn=swiperContainer.getElementsByClassName("swiper-button-prev")[0];
+	const swiperNextBtn=swiperContainer.getElementsByClassName("swiper-button-next")[0];
+	let activeNum=0;
+
+	const mainSwiper=new Swiper(swiperContainer, {
+		navigation: {
+			prevEl: swiperPrevBtn,
+			nextEl: swiperNextBtn
+		},
+		on: {
+			init: function(){
+				// console.log("init event!!");
+				swiperPrevBtn.style.display="none";
+				swiperNextBtn.style.display="none";
+			},
+			transitionEnd: function(){
+				// console.log("slide transition CSS end event!!");
+				activeNum=this.activeIndex;
+
+				if(activeNum == 0){
+					swiperPrevBtn.style.display="none";
+					swiperNextBtn.style.display="none";
+					video.play();
+				}
+				else{
+					swiperPrevBtn.style.display="block";
+					swiperNextBtn.style.display="block";
+					video.pause();
+				}
+			}
+		}
+	});
+
+	// Mobile Menu
+	const upper=start.getElementsByClassName("upper")[0];
+	const tab=upper.getElementsByClassName("tab")[0];
+	const symbol=upper.getElementsByClassName("symbol")[0];
+	const mobileMenu=document.getElementsByClassName("mobile_menu")[0];
+	const mobileMenuCloseBtn=mobileMenu.firstElementChild;
+	const menu=this.document.getElementById("menu");
+	const menuLi=menu.firstElementChild.children;
+	let menuN;
+
+	tab.addEventListener("click", function(e){
+		e.preventDefault();
+		document.body.classList.add("fixed");
+		mobileMenu.classList.add("active");
+	});
+	mobileMenuCloseBtn.addEventListener("click", function(e){
+		e.preventDefault();
+		document.body.classList.remove("fixed");
+		mobileMenu.classList.remove("active");
+	});
+
+	for(let i=0; i<menuLi.length; i++){
+		menuLi[i].index=i;
+
+		menuLi[i].addEventListener("click", function(e){
+			e.preventDefault();
+			menuN=e.currentTarget.index;
+
+			if(e.currentTarget.classList.contains("active") == false){
+				for(let j=0; j<menuLi.length; j++){
+					if(j == menuN){
+						menuLi[j].classList.add("active");
+						menuLi[j].getElementsByTagName("ul")[0].style.display="block";
+					}
+					else{
+						menuLi[j].classList.remove("active");
+						menuLi[j].getElementsByTagName("ul")[0].style.display="none";
+					}
+				}
+			}
+			else{
+				e.currentTarget.classList.remove("active");
+				e.currentTarget.getElementsByTagName("ul")[0].style.display="none";
+			}
+		});
+	}
+});
+
+
+
+4) step4
+
+4-1) CSS 작성
+
+...
+
+/* step1 start page */
+#start {
+	position: relative;
+	width: auto;
+	height: 100vh;
+}
+#start .upper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1001;
+	padding: 0 16px;
+	width: 100%;
+	height: 75px;
+	background-color: transparent;
+	box-sizing: border-box;
+}
+#start .upper.fixed { /* added */
+	position: fixed;
+	top: -75px;
+	background-color: rgba(255,255,255,.8);
+	opacity: 0;
+	box-shadow: 1px 1px 6px rgba(0,0,0,.1);
+}
+#start .upper .tab {
+	width: 32px;
+}
+#start .upper .symbol {
+	display: none;
+	width: 32px;
+}
+#start .upper.fixed .symbol { /* added */
+	display: block;
+}
+#start .upper .search {
+	width: 30px;
+}
+
+...
+
+/* added */
+/* step5 project list */
+#project_list {
+	padding: 22px 8px 34px;
+}
+#project_list .row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+#project_list .row .column {
+	padding: 0 8px;
+	width: 50%;
+	box-sizing: border-box;
+}
+#project_list .row .column .list {
+	position: relative;
+	margin-top: 12px;
+	overflow: hidden;
+	border-radius: 4px;
+	box-shadow: 0 0 2px rgba(0,0,0,.2);
+}
+#project_list .row .column .list .photo {
+	padding-bottom: 50px;
+}
+#project_list .row .column .list .photo img {
+	width: 100%;
+}
+#project_list .row .column .list .description {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+#project_list .row .column .list .description a {
+	display: block;
+	position: relative;
+	padding: 12px;
+	background-color: #fff;
+	box-sizing: border-box;
+}
+#project_list .row .column .list .description a .more {
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	margin-top: -5px;
+}
+#project_list .row .column .list .description a dt {
+	font-size: 0.813em;
+	font-weight: 600;
+	color: #333;
+}
+#project_list .row .column .list .description a dd {
+	font-size: 0.813em;
+	color: #999;
+}
+
+@media only screen and (max-width: 460px) {
+	#project_list .row {
+		flex-wrap: wrap;
+	}
+	#project_list .row .column {
+		width: 100%;
+	}
+}
+
+#project_list .project_detail_area {
+	display: none;
+	/* display: flex; */
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1001;
+	padding: 0 16px;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgb(0,32,48);
+	background: linear-gradient(150deg, rgba(0,32,48,.8) 0%, rgba(0,32,48,1) 100%);
+	box-sizing: border-box;
+}
+#project_list .project_detail_area.active {
+	display: flex;
+}
+#project_list .project_detail_area .close {
+	display: block;
+	position: absolute;
+	left: 16px;
+	top: 26px;
+	z-index: 1000;
+	width: 26px;
+	height: 26px;
+}
+#project_list .project_detail_area .lists {
+	width: 100%;
+	height: 80vh;
+	overflow: hidden;
+	border-radius: 6px;
+}
+#project_list .project_detail_area .swiper-container {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+#project_list .project_detail_area .swiper-container .swiper-slide {
+	text-align: center;
+	color: #fff;
+}
+#project_list .project_detail_area .swiper-container .swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#project_list .project_detail_area .swiper-container .swiper-slide .description {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #fff;
+}
+#project_list .project_detail_area .swiper-container .swiper-slide .description p {
+	padding: 24px 0;
+	line-height: 1.6;
+	font-size: 0.875em;
+	font-weight: 300;
+	color: #666;
+}
+#project_list .project_detail_area .swiper-container .swiper-slide .description p i {
+	font-weight: 500;
+	font-style: normal;
+}
+#project_list .project_detail_area .swiper-container .swiper-slide .description .title {
+	display: block;
+	position: relative;
+	padding-bottom: 32px;
+	font-size: 1.125em;
+	font-weight: 400;
+}
+#project_list .project_detail_area .swiper-container .swiper-slide .description .title::after {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: 34px;
+	margin-left: -42px;
+	width: 84px;
+	height: 3px;
+	background-color: #00bdfe;
+	border-radius: 2px;
+}
+#project_list .project_detail_area .swiper-container .swiper-slide .description .subject {
+	display: block;
+	font-weight: 400;
+	color: #ccc;
+}
+#project_list .project_detail_area .direction {
+	display: block;
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+	text-align: center;
+	font-size: 1.125em;
+	color: #00bdfe;
+}
+
+@media only screen and (orientation: portrait) {
+	#project_list .project_detail_area .lists {
+		height: 80vh;
+	}
+	#project_list .project_detail_area .swiper-container .swiper-slide .description p {
+		padding: 24px 0;
+	}
+	#project_list .project_detail_area .swiper-container .swiper-slide .description .title {
+		padding-bottom: 32px;
+	}
+	#project_list .project_detail_area .direction {
+		display: block;
+	}
+}
+@media only screen and (orientation: landscape) {
+	#project_list .project_detail_area .lists {
+		height: 72vh;
+		transform: translateY(16px);
+	}
+	#project_list .project_detail_area .swiper-container .swiper-slide .description p {
+		padding: 16px 0;
+	}
+	#project_list .project_detail_area .swiper-container .swiper-slide .description .title {
+		padding-bottom: 24px;
+	}
+	#project_list .project_detail_area .direction {
+		display: none;
+	}
+}
+
+/* step6 contact us */
+#contact_us {
+	padding: 22px 0 34px;
+}
+#contact_us .contact_data {
+	padding: 0 16px;
+}
+#contact_us .contact_data .title h2 {
+	line-height: 60px;
+	font-size: 1.563em;
+	font-weight: 500;
+	color: #00bdfe;
+}
+#contact_us .contact_data .title p {
+	font-size: 0.875em;
+	color: #333;
+}
+#contact_us .contact_data .description {
+	margin-top: 35px;
+}
+#contact_us .contact_data .description li {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+#contact_us .contact_data .description li span {
+	line-height: 25px;
+	font-size: 0.875em;
+	color: #333;
+}
+#contact_us .contact_data .description li span.label {
+	width: 45%;
+}
+#map {
+	margin-top: 35px;
+	width: 100%;
+	height: 15.625em;
+}
+#footer {
+	padding: 16px;
+	line-height: 1.5;
+	text-align: center;
+	font-size: 0.875em;
+	color: #999;
+}
+#footer span {
+	color: #00bdfe;
+}
+
+
+4-2) JavaScript 작성
+
+window.addEventListener("DOMContentLoaded", function(){
+	// Start Video Control
+	const video=document.getElementById("intro");
+
+	video.addEventListener("loadeddata", function(){
+		video.muted=true;
+		video.play();
+	});
+	video.addEventListener("ended", function(){
+		video.currentTime=0;
+		video.play();
+	});
+
+	// Start SwiperJS Slider
+	const start=document.getElementById("start");
+	const swiperContainer=start.getElementsByClassName("swiper-container")[0];
+	const swiperPrevBtn=swiperContainer.getElementsByClassName("swiper-button-prev")[0];
+	const swiperNextBtn=swiperContainer.getElementsByClassName("swiper-button-next")[0];
+	let activeNum=0;
+
+	const mainSwiper=new Swiper(swiperContainer, {
+		navigation: {
+			prevEl: swiperPrevBtn,
+			nextEl: swiperNextBtn
+		},
+		on: {
+			init: function(){
+				// console.log("init event!!");
+				swiperPrevBtn.style.display="none";
+				swiperNextBtn.style.display="none";
+			},
+			transitionEnd: function(){
+				// console.log("slide transition CSS end event!!");
+				activeNum=this.activeIndex;
+
+				if(activeNum == 0){
+					swiperPrevBtn.style.display="none";
+					swiperNextBtn.style.display="none";
+					video.play();
+				}
+				else{
+					swiperPrevBtn.style.display="block";
+					swiperNextBtn.style.display="block";
+					video.pause();
+				}
+			}
+		}
+	});
+
+	// Mobile Menu
+	const upper=start.getElementsByClassName("upper")[0];
+	const tab=upper.getElementsByClassName("tab")[0];
+	const symbol=upper.getElementsByClassName("symbol")[0];
+	const mobileMenu=document.getElementsByClassName("mobile_menu")[0];
+	const mobileMenuCloseBtn=mobileMenu.firstElementChild;
+	const menu=this.document.getElementById("menu");
+	const menuLi=menu.firstElementChild.children;
+	let menuN;
+
+	tab.addEventListener("click", function(e){
+		e.preventDefault();
+		document.body.classList.add("fixed");
+		mobileMenu.classList.add("active");
+	});
+	mobileMenuCloseBtn.addEventListener("click", function(e){
+		e.preventDefault();
+		document.body.classList.remove("fixed");
+		mobileMenu.classList.remove("active");
+	});
+
+	for(let i=0; i<menuLi.length; i++){
+		menuLi[i].index=i;
+
+		menuLi[i].addEventListener("click", function(e){
+			e.preventDefault();
+			menuN=e.currentTarget.index;
+
+			if(e.currentTarget.classList.contains("active") == false){
+				for(let j=0; j<menuLi.length; j++){
+					if(j == menuN){
+						menuLi[j].classList.add("active");
+						menuLi[j].getElementsByTagName("ul")[0].style.display="block";
+					}
+					else{
+						menuLi[j].classList.remove("active");
+						menuLi[j].getElementsByTagName("ul")[0].style.display="none";
+					}
+				}
+			}
+			else{
+				e.currentTarget.classList.remove("active");
+				e.currentTarget.getElementsByTagName("ul")[0].style.display="none";
+			}
+		});
+	}
+
+	// Project Detail List
+	const project=document.getElementById("project_list");
+	const projectDescription=project.getElementsByClassName("description");
+	const projectDetail=project.getElementsByClassName("project_detail_area")[0];
+	const projectDetailCloseBtn=projectDetail.getElementsByClassName("close")[0];
+	let projectSlider;
+
+	for(let i=0; i<projectDescription.length; i++){
+		projectDescription[i].addEventListener("click", function(e){
+			e.preventDefault();
+			document.body.classList.add("fixed");
+			projectDetail.classList.add("active");
+
+			setTimeout(function(){
+				projectSlider=new Swiper(".project_detail_area .swiper-container");
+			}, 100);
+		});
+	}
+	projectDetailCloseBtn.addEventListener("click", function(e){
+		e.preventDefault();
+		document.body.classList.remove("fixed");
+		projectDetail.classList.remove("active");
+		projectSlider=null;
+	});
+
+	// Google Map
+	function initMap(){
+		let myLatLng={lat: 37.399623, lng: 126.920380};
+		let map=new google.maps.Map(document.getElementById("map"), {
+			zoom: 16,
+			center: myLatLng,
+			mapTypeControl: false,
+			zoomControl: false
+		});
+
+		let marker=new google.maps.Marker({
+			position: myLatLng,
+			map: map,
+			title: "디자인발전소"
+		});
+	}
+
+	window.initMap=initMap;
+
+	// Fixed upper
+	let t=0;
+	let scrollTimer=0;
+
+	window.addEventListener("scroll", function(){
+		clearTimeout(scrollTimer);
+
+		scrollTimer=setTimeout(function(){
+			t=window.pageYOffset;
+
+			if(t > window.innerHeight){
+				if(upper.classList.contains("fixed") == false){
+					upper.classList.add("fixed");
+					gsap.to(upper, {top: 0, opacity: 1, duration: 0.3});
+				}
+				else{
+					return;
+				}
+			}
+			else{
+				if(upper.classList.contains("fixed") == true){
+					upper.classList.remove("fixed");
+					upper.removeAttribute("style");
+				}
+				else{
+					return;
+				}
+			}
+		}, 15);
+		symbol.addEventListener("click", function(e){
+			e.preventDefault();
+			gsap.to(window, {scrollTo: 0, duration: 0.5});
+		});
+	});
+});

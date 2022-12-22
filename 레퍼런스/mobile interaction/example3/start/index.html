@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>basic :: Mobile Example</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,500,700,900">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollToPlugin.min.js"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpBuYRQaFFOM1WHuLcqfurJw9Frx7Z4i0&callback=initMap"></script>
+<script src="js/main.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+	<header id="start"><!-- step1 start page -->
+		<div class="upper">
+			<a href="" class="tab"><img src="images/ico_tab.png" alt="탭"></a>
+			<a href="" class="symbol"><img src="images/symbol.png" alt="디자인발전소 심벌"></a><!-- fixed changed HTML -->
+			<a href="" class="search"><img src="images/ico_search.png" alt="검색"></a>
+		</div>
+		<div class="signature_area">
+			<div class="symbol">
+				<a href=""><img src="images/symbol.png" alt="디자인발전소 심벌"></a>
+			</div>
+			<h1 id="logo">
+				<span class="title">Designdigit Agency</span>
+				<span>하나에이젼시 디지털 프로젝트</span>
+			</h1>
+		</div>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<video id="intro" src="video/hands.mp4" muted></video>
+				</div>
+				<div class="swiper-slide">
+					<div class="description">
+						<p>잘 만든 웹 페이지는 비즈니스의 성공은 물론 채용에도 많은 도움이 되며 기업이 필요한 모든 홍보, 마케팅 방법을 지원해 드립니다.</p>
+					</div>
+					<img src="images/slider_main1.jpg" alt="main1">
+				</div>
+				<div class="swiper-slide">
+					<div class="description">
+						<p>하나에이젼시는 웹 구축, 웹 개발, 모바일 APP 개발, 웹 디자인 등 혁신적인 기술을 바탕으로 최대의 만족을 선사합니다.</p>
+					</div>
+					<img src="images/slider_main2.jpg" alt="main2">
+				</div>
+				<div class="swiper-slide">
+					<div class="description">
+						<p>디자인과 프로그램의 트렌드는 항상 변화하고 있으며 파생되는 다양한 영역에서 디지털 세상을 그리고 있습니다.</p>
+					</div>
+					<img src="images/slider_main3.jpg" alt="main3">
+				</div>
+			</div>
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+		</div>
+		<div class="mobile_menu">
+			<a href="" class="close"><img src="images/ico_close.png" alt="닫기 버튼"></a>
+			<nav id="menu">
+				<ul>
+					<li>
+						<a href="">서비스소개</a>
+						<ul>
+							<li><a href="">웹에이젼시</a></li>
+							<li><a href="">디자인에이젼시</a></li>
+							<li><a href="">IT 운영</a></li>
+							<li><a href="">홍보 마켓팅</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">포트폴리오</a>
+						<ul>
+							<li><a href="">웹에이젼시</a></li>
+							<li><a href="">디자인에이젼시</a></li>
+							<li><a href="">홍보 마켓팅</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">하나이야기</a>
+						<ul>
+							<li><a href="">스터디룸</a></li>
+							<li><a href="">하나이야기</a></li>
+							<li><a href="">고객리뷰</a></li>
+							<li><a href="">하나소식</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">상담문의</a>
+						<ul>
+							<li><a href="">프로젝트 상담</a></li>
+							<li><a href="">상담안내</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">하나소개</a>
+						<ul>
+							<li><a href="">하나소개</a></li>
+							<li><a href="">연혁</a></li>
+							<li><a href="">조직구성</a></li>
+							<li><a href="">고객사</a></li>
+							<li><a href="">채용안내</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="login_area"><!-- step2 login page -->
+		<a href="" class="close"><img src="images/ico_close.png" alt="닫기 버튼"></a>
+		<div class="login_data">
+			<div class="title">
+				<h2>로그인</h2>
+				<p>하나에이젼시에 로그인하신 후<br>다양한 정보와 많은 혜택을 누리세요.</p>
+			</div>
+			<div class="form_area">
+				<form>
+					<input type="text" placeholder="E-mail">
+					<input type="password" placeholder="Password">
+					<input type="submit" value="Sign In">
+					<div class="form_button">
+						<ul>
+							<li><a href="">아이디찾기</a></li>
+							<li><a href="">비밀번호 찾기</a></li>
+							<li><a href="">회원가입</a></li>
+							<li><a href="">자주묻는 질문</a></li>
+						</ul>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<section id="introduce"><!-- step3 introduce page -->
+		<div class="introduce_list">
+			<ul>
+				<li>
+					<div class="list">
+						<div class="title"><h3>기업문화 /</h3></div>
+						<div class="photo"><img src="images/img_introduce1.jpg" alt="기업문화 이미지"></div>
+						<div class="description">하나는 소통과 나눔의 철학을 가지고 있으며 따뜻한 공동체 문화가 살아숨쉬고 있습니다.<br>직급 없는 수평적인 업무 조직안에서 상호 존중하고 배려하는 성숙한 기업문화가 하나의 대표적인 자랑거리입니다.</div>
+					</div>
+				</li>
+				<li>
+					<div class="list">
+						<div class="title"><h3>우수한 인력 /</h3></div>
+						<div class="photo"><img src="images/img_introduce2.jpg" alt="우수한 인력 이미지"></div>
+						<div class="description">하나 가족들은 언제나 표정이 살아 있습니다. 대부분의 업무를 스스로 결정하고 수행하기 때문입니다.</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<section id="project_status"><!-- step4 project status -->
+		<div class="list">
+			<ul>
+				<li>
+					<dl>
+						<dt>13</dt>
+						<dd class="mon">Mar</dd>
+						<dd class="description"><a href="">컨테이너 관리 솔루션 커스터마이징 웹 프론트 개발</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>09</dt>
+						<dd class="mon">Mar</dd>
+						<dd class="description"><a href="">고도몰 PHP 기반 명품 쇼핑몰 유지보수 및 기능 개선</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>09</dt>
+						<dd class="mon">Mar</dd>
+						<dd class="description"><a href="">운영 중인 반응형 홈페이지 디자인 및 개발 리뉴얼</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>02</dt>
+						<dd class="mon">Mar</dd>
+						<dd class="description"><a href="">웹 팝업 플레이어 디자인 및 기능 개선</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>19</dt>
+						<dd class="mon">Feb</dd>
+						<dd class="description"><a href="">B2C 콘텐츠 플랫폼 모바일 웹 프런트엔드 개발</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>13</dt>
+						<dd class="mon">Feb</dd>
+						<dd class="description"><a href="">솔루션 기반 회사 홈페이지 리뉴얼 구축</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>23</dt>
+						<dd class="mon">Jan</dd>
+						<dd class="description"><a href="">웹 기반 통합 관제 시스템 퍼블리싱 작업</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>27</dt>
+						<dd class="mon">Dec</dd>
+						<dd class="description"><a href="">은행 온/오프라인 디자인 운영 유지보수</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>03</dt>
+						<dd class="mon">Dec</dd>
+						<dd class="description"><a href="">SMS Android 앱 마무리 개발 및 디자인 수정</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>21</dt>
+						<dd class="mon">Nov</dd>
+						<dd class="description"><a href="">인테리어 중개 플랫폼 디자인 및 기능 개선 작업</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>14</dt>
+						<dd class="mon">Nov</dd>
+						<dd class="description"><a href="">자동차 유리 판매 PC 및 Mobile 웹 제작</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>30</dt>
+						<dd class="mon">Oct</dd>
+						<dd class="description"><a href="">군 관련 사이트 서브 도메인 구축 디자인 개발</a></dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>13</dt>
+						<dd class="mon">Mar</dd>
+						<dd class="description"><a href="">GTK# 활용한 C# 프로그램 UI 디자인 및 개발</a></dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<section id="project_list"><!-- step5 project list -->
+		<div class="row">
+			<div class="column">
+				<div class="list">
+					<div class="photo"><img src="images/img_portfolio_list1.jpg" alt="포트폴리오 리스트1"></div>
+					<div class="description">
+						<a href="">
+							<img src="images/ico_list_more.png" alt="포트폴리오 리스트 더보기" class="more">
+							<dl>
+								<dt>웹 프론트 개발</dt>
+								<dd>컨테이너 관리 솔루션 커스터마이징</dd>
+							</dl>
+						</a>
+					</div>
+				</div>
+				<div class="list">
+					<div class="photo"><img src="images/img_portfolio_list2.jpg" alt="포트폴리오 리스트2"></div>
+					<div class="description">
+						<a href="">
+							<img src="images/ico_list_more.png" alt="포트폴리오 리스트 더보기" class="more">
+							<dl>
+								<dt>쇼핑몰 유지보수 및 기능 개선</dt>
+								<dd>고도몰 PHP 기반 명품 쇼핑몰</dd>
+							</dl>
+						</a>
+					</div>
+				</div>
+				<div class="list">
+					<div class="photo"><img src="images/img_portfolio_list3.jpg" alt="포트폴리오 리스트3"></div>
+					<div class="description">
+						<a href="">
+							<img src="images/ico_list_more.png" alt="포트폴리오 리스트 더보기" class="more">
+							<dl>
+								<dt>디자인 및 개발 리뉴얼</dt>
+								<dd>운영 중인 반응형 홈페이지</dd>
+							</dl>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="list">
+					<div class="photo"><img src="images/img_portfolio_list4.jpg" alt="포트폴리오 리스트4"></div>
+					<div class="description">
+						<a href="">
+							<img src="images/ico_list_more.png" alt="포트폴리오 리스트 더보기" class="more">
+							<dl>
+								<dt>디자인 및 기능 개선</dt>
+								<dd>웹 팝업 플레이어</dd>
+							</dl>
+						</a>
+					</div>
+				</div>
+				<div class="list">
+					<div class="photo"><img src="images/img_portfolio_list5.jpg" alt="포트폴리오 리스트5"></div>
+					<div class="description">
+						<a href="">
+							<img src="images/ico_list_more.png" alt="포트폴리오 리스트 더보기" class="more">
+							<dl>
+								<dt>웹 프론트 개발</dt>
+								<dd>삼성 쇼핑몰 관련 유지보수</dd>
+							</dl>
+						</a>
+					</div>
+				</div>
+				<div class="list">
+					<div class="photo"><img src="images/img_portfolio_list6.jpg" alt="포트폴리오 리스트6"></div>
+					<div class="description">
+						<a href="">
+							<img src="images/ico_list_more.png" alt="포트폴리오 리스트 더보기" class="more">
+							<dl>
+								<dt>디자인 및 개발 리뉴얼</dt>
+								<dd>운영 중인 반응형 홈페이지</dd>
+							</dl>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="project_detail_area">
+			<a href="" class="close"><img src="images/ico_close.png" alt="닫기 버튼"></a>
+			<div class="lists">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="images/img_portfolio_detail_list1.jpg" alt="portfolio detail1">
+							<div class="description">
+								<p>
+									<span class="title">웹 프론트 개발</span>
+									<i>컨테이너 관리 솔루션 커스터마이징 웹 프론트 개발</i><br>해외 솔루션의 프론트앤드 커스터마이징<br>고객사의 업무 프로세스에 맞게 수정<br>
+									<span class="subject">EmberJS NodeJS JQuery Javascript</span>
+								</p>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<img src="images/img_portfolio_detail_list2.jpg" alt="portfolio detail2">
+							<div class="description">
+								<p>
+									<span class="title">웹 프론트 개발</span>
+									<i>컨테이너 관리 솔루션 커스터마이징 웹 프론트 개발</i><br>해외 솔루션의 프론트앤드 커스터마이징<br>고객사의 업무 프로세스에 맞게 수정<br>
+									<span class="subject">EmberJS NodeJS JQuery Javascript</span>
+								</p>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<img src="images/img_portfolio_detail_list3.jpg" alt="portfolio detail3">
+							<div class="description">
+								<p>
+									<span class="title">웹 프론트 개발</span>
+									<i>컨테이너 관리 솔루션 커스터마이징 웹 프론트 개발</i><br>해외 솔루션의 프론트앤드 커스터마이징<br>고객사의 업무 프로세스에 맞게 수정<br>
+									<span class="subject">EmberJS NodeJS JQuery Javascript</span>
+								</p>
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<img src="images/img_portfolio_detail_list4.jpg" alt="portfolio detail4">
+							<div class="description">
+								<p>
+									<span class="title">웹 프론트 개발</span>
+									<i>컨테이너 관리 솔루션 커스터마이징 웹 프론트 개발</i><br>해외 솔루션의 프론트앤드 커스터마이징<br>고객사의 업무 프로세스에 맞게 수정<br>
+									<span class="subject">EmberJS NodeJS JQuery Javascript</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+			<a href="" class="direction">GO SITE</a>
+		</div>
+	</section>
+	<section id="contact_us"><!-- step6 contact us -->
+		<div class="contact_data">
+			<div class="title">
+				<h2>Office.</h2>
+				<p>경기도 안양시 OOO동 OO OO빌딩 0층</p>
+			</div>
+			<div class="description">
+				<ul>
+					<li><span class="label">대표전화</span><span class="script">031.000.0000</span></li>
+					<li><span class="label">팩스번호</span><span class="script">031.000.0000</span></li>
+					<li><span class="label">이메일</span><span class="script">designdigit@hanmail.net</span></li>
+					<li><span class="label">사이트 제작 문의</span><span class="script">031.000.0000</span></li>
+					<li><span class="label">미디어 제작 문의</span><span class="script">031.000.0000</span></li>
+				</ul>
+			</div>
+		</div>
+		<div id="map"></div>
+		<footer id="footer">Copyright ⓒ 2020 by <span>Designdigit Agency.</span> All Rights Reserved.</footer>
+	</section>
+</div>
+</body>
+</html>

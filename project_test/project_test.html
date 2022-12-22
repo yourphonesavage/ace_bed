@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>basic :: Parallax Interface</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<style>
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, table, dl, dd {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 16px;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+ul, ol {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	vertical-align: top;
+	border: none;
+}
+body {
+	margin: 0;
+	padding: 0;
+	/* overflow-y: hidden; */
+	font-family: "Open Sans", sans-serif;
+	font-size: 1em;
+	color: #555;
+}
+body.fixed { /**/
+	overflow-y: hidden;
+}
+
+/* header */
+#main_area {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background: url(images/keyvisual.jpg) no-repeat center center;
+	background-size: cover;
+}
+#main_area .title {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -60px 0 0 -150px;
+	width: 300px;
+	height: 120px;
+	line-height: 120px;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 2.375em;
+	font-weight: 300;
+	background-color: rgba(255,255,255,.2);
+	color: #fff;
+	opacity: 0;
+	transition: all 0.4s;
+	transform: translateY(100px);
+}
+#main_area.active .title {
+	opacity: 1;
+	transform: translateY(0);
+}
+#desktop_menu {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1000;
+	width: 100%;
+	text-align: center;
+}
+#desktop_menu.fixed {
+	position: fixed;
+}
+#desktop_menu li {
+	display: inline-block;
+}
+#desktop_menu li a {
+	display: block;
+	padding: 5px 30px;
+	line-height: 60px;
+	font-size: 0.875em;
+	color: #333;
+}
+#main_area .controller {
+	position: fixed;
+	right: 30px;
+	top: 50%;
+	z-index: 100;
+	margin: 0;
+	margin-top: -92px;
+	padding: 0;
+	width: 14px;
+	list-style: none;
+}
+#main_area .controller li {
+	margin-top: 20px;
+	width: 14px;
+	height: 14px;
+}
+#main_area .controller li:first-child {
+	margin-top: 0;
+}
+#main_area .controller li a {
+	display: block;
+	width: 14px;
+	height: 14px;
+	text-indent: -9999px;
+	background-color: #8ac007;
+	border-radius: 50%;
+}
+#main_area .controller li.on a {
+	background-color: #fff;
+}
+
+/* section */
+.sub {
+	padding: 100px 50px;
+	width: 100%;
+	height: 100vh;
+	background-color: #f4f4f4;
+	color: #ccc;
+	box-sizing: border-box;
+}
+.sub:nth-child(even) {
+	background-color: #eaeaea;
+}
+.sub h2 {
+	font-size: 2em;
+	font-weight: 300;
+	opacity: 0;
+	transition: all 0.4s;
+	transform: translateY(100px);
+}
+.sub.active h2 {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* footer */
+#footer {
+	height: 160px;
+	background-color: #333;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.js"></script>
+<script src="js/ismobile.js"></script>
+<script>
+$(function(){
+	// console.log(isMobile);
+
+	/*
+	Mobile Device : body Scrollbar, scroll event	ismobile true
+	pc device :  body scrollbar X , wheel event		ismobile false
+	*/
+
+	if(isMobilde == false){
+		$("body").addClass("fixed");
+	}
+
+	var n=0;
+	var h;
+	var pos=0;
+	var timer=0;
+	var total=6;
+
+	function init(){
+		$("#main_area").addClass("active");
+		$(".controller li").eq(n).addClass("on");
+	}
+	init();
+
+	$(window).resize(function(){
+		clearTimeout(timer);
+
+		timer=setTimeout(function(){
+			h=$(window).height();
+			pos=n*h;
+			$("html").stop().animate({scrollTop: pos}, 300);
+		}, 100);
+	});
+	$(window).trigger("resize");
+
+	$(".container").mousewheel(function(e, delta){
+		if($("html").is(":animated")) return;
+
+		if(delta > 0){
+			if(n > 0){
+				n=n-1;
+			}
+			if($("#desktop_menu").hasClass("fixed") == false){
+				$("#desktop_menu").addClass("fixed");
+				$("#desktop_menu").css({top:-70}).delay(300).animate({top:0}, 300);
+			}
+		}
+		else{
+			if(n < total){
+				n=n+1;
+			}
+			if($("#desktop_menu").hasClass("fixed") == true){
+				$("#desktop_menu").removeAttr("class");
+				$("#desktop_menu").removeAttr("style");
+			}
+		}
+		if(n != total){
+			pos=n*h;
+		}
+		else{
+			pos=$(document).height()-$(window).height();
+		}
+
+		$("html").stop().animate({scrollTop: pos}, 800, function(){
+			$(".container > *").removeClass("active");
+			$(".controller li").removeClass("on");
+
+			if(n == 0){
+				$("#main_area").addClass("active");
+				$(".controller li").eq(n).addClass("on");
+			}
+			else if(n == total){
+				$(".controller li").eq(n-1).addClass("on");
+			}
+			else{
+				$("#sub"+n).addClass("active");
+				$(".controller li").eq(n).addClass("on");
+			}
+		});
+	});
+	$(".controller li").click(function(e){
+		if($("html").is(":animated")) return;
+
+		e.preventDefault();
+		n=$(this).index();
+		pos=n*h;
+
+		$("html").animate({scrollTop: pos}, 800, function(){
+			$(".container > *").removeClass("active");
+			$(".controller li").removeClass("on");
+
+			if(n == 0){
+				$("#main_area").addClass("active");
+				$(".controller li").eq(n).addClass("on");
+			}
+			else if(n == total){
+				$(".controller li").eq(n-1).addClass("on");
+			}
+			else{
+				$("#sub"+n).addClass("active");
+				$(".controller li").eq(n).addClass("on");
+			}
+		});
+	});
+});
+</script>
+</head>
+
+<body>
+<div class="container">
+	<header id="main_area">
+		<div class="title">portfolio</div>
+		<nav id="desktop_menu">
+			<ul>
+				<li><a href="">CULTURE</a></li>
+				<li><a href="">BENEFIT</a></li>
+				<li><a href="">STORY</a></li>
+				<li><a href="">CAREER</a></li>
+				<li><a href="">CONTACT</a></li>
+			</ul>
+		</nav>
+		<div class="controller">
+			<ul>
+				<li><a href="">button1</a></li>
+				<li><a href="">button2</a></li>
+				<li><a href="">button3</a></li>
+				<li><a href="">button4</a></li>
+				<li><a href="">button5</a></li>
+				<li><a href="">button6</a></li>
+			</ul>
+		</div>
+	</header>
+	<section id="sub1" class="sub"><h2>section1</h2></section>
+	<section id="sub2" class="sub"><h2>section2</h2></section>
+	<section id="sub3" class="sub"><h2>section3</h2></section>
+	<section id="sub4" class="sub"><h2>section4</h2></section>
+	<section id="sub5" class="sub"><h2>section5</h2></section>
+	<footer id="footer"></footer>
+</div>
+</body>
+</html>

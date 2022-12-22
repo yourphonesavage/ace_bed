@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>basic :: Parallax Interface</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<style>
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, table, dl, dd {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 16px;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+ul, ol {
+	list-style: none;
+}
+img {
+	max-width: 100%;
+	vertical-align: top;
+	border: none;
+}
+body {
+	font-family: "Open Sans", sans-serif;
+	font-size: 1em;
+}
+.swap_image {
+	position: relative;
+	z-index: -1;
+	height: 100vh;
+	background: url(images/bg.jpg) no-repeat center center;
+	background-size: cover;
+}
+.swap_image .swap_bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 0.8s ease-in-out;
+}
+.swap_image .swap_bg.active {
+	opacity: 1;
+}
+.swap_image .swap_bg img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.controller {
+	position: absolute;
+	left: 20px;
+	bottom: 10vh;
+	font-size: 0;
+}
+.controller li {
+	display: inline-block;
+	margin-left: 20px;
+}
+.controller li:first-child {
+	margin-left: 0;
+}
+.controller li a {
+	display: block;
+	width: 14px;
+	height: 14px;
+	background-color: #333;
+	border-radius: 50%;
+	transition: background-color 0.3s;
+}
+.controller li.on a {
+	background-color: #fff;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+$(function(){
+	var imageN;
+
+	$(".controller li").hover(
+		function(){
+			$(this).addClass("on");
+			imageN=$(this).index();
+			$(".swap_bg").removeClass("active");
+			$(".swap_bg").eq(imageN).addClass("active");
+		},
+		function(){
+			$(this).removeClass("on");
+			imageN=null;
+			$(".swap_bg").removeClass("active");
+		}
+	);
+});
+</script>
+</head>
+
+<body>
+<div class="container">
+	<div class="swap_image">
+		<div class="swap_bg"><img src="images/bg1.jpg" alt="image1"></div>
+		<div class="swap_bg"><img src="images/bg2.jpg" alt="image2"></div>
+		<div class="swap_bg"><img src="images/bg3.jpg" alt="image3"></div>
+	</div>
+	<div class="controller">
+		<ul>
+			<li><a href="">button1</a></li>
+			<li><a href="">button2</a></li>
+			<li><a href="">button3</a></li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>
