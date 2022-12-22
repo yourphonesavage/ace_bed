@@ -141,21 +141,6 @@ body {
 	transition: 0.4s;
 	transform: scaleX(0);
 }
-
-
-
-
-
-#desktop_menu > ul > li:first-child > a::after {
-	transform: scaleX(1);
-}
-#desktop_menu li:first-child li:first-child a {
-	color: rgba(220,190,170,.9);
-}
-
-
-
-
 #desktop_menu > ul > li:hover > a::after,
 #desktop_menu > ul > li:focus > a::after {
 	transform: scaleX(1);
